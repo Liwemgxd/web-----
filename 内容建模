@@ -1,0 +1,24 @@
+内容建模
+13101004 陈富配
+
+1.  静态建模：类图
+    网站功能主要涉及普通用户、授权用户、信息、信息分类和信息验证等内容。
+    分别抽象为：domestic consumer、authorised user、Message、Category和Checking。
+    
+     http://i.imgur.com/qZSFgBW.png
+  
+    类图所示为用户具有多种类型，如普通用户，授权用户，而授权用户又分为学生、兼职机构、
+    培训机构以及管理员； 信息也具有多种类型，如二手物品信息、兼职信息以及教育培训信息；
+    一条信息只能隶属于一种分类，而一种分类可拥有多条信息；所有用户都可以浏览所有信息，
+    只有授权用户可以发布和回复信息；管理员在信息发布之前要对信息进行验证。
+2.  动态建模：状态图
+
+    http://i.imgur.com/gKxeOhs.png
+    
+    状态图显示了信息经提交到被回复之间的状态迁移。提交以后首先为已提交状态（submitted）；管理员
+    进行信息审核时为验证状态（underchecking）；当信息未达到录用标准（evaluation<threshold）时，
+    信息进入被录用（rejected）状态；当信息达到录用标准（evaluation>=threshold）时，信息进入发布
+    （realesed）状态；如果信息需要编辑，则进入编辑（edited）状态，当用户被验证为授权用户
+    （evaluated[User=authorized user]）时，信息进行编辑，重新进入发布（released）状态；如果信息的
+     链接被用户点击，则进入浏览（browsed）状态；当用户被验证为授权用户（evaluated[User=authorized user]）
+     时，信息进入回复（replyed）状态；回复完成，状态转换结束。
